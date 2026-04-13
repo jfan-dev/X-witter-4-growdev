@@ -1,6 +1,6 @@
 import app from "./app.js"
 
-const port = 3001
+const port = 3002
 const url = `http://localhost:${port}`;
 
 app.listen(port, () => {
