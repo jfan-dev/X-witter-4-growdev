@@ -1,16 +1,17 @@
 import { Router } from "express";
+import { authMiddleware } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.get("/:id", (req, res) => {
+router.get("/:id", authMiddleware, (req, res) => {
     return res.json({ message: "users route working"})
 })
 
-router.post("/:id/follow", (req, res) => {
+router.post("/:id/follow", authMiddleware, (req, res) => {
     return res.json({ message: "users follow route working"})
 })
 
-router.delete("/:id/follow", (req, res) => {
+router.delete("/:id/follow", authMiddleware, (req, res) => {
     return res.json({ message: "users unfollow route working"})
 })
 
