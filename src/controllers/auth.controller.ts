@@ -13,9 +13,9 @@ export async function authSignup(req, res) {
 
 export async function authSignin(req, res) {
   try {
-    const user = await signin(req.body);
+    const result  = await signin(req.body);
 
-    return res.status(200).json(user);
+    return res.status(200).json(result);
   } catch (error) {
     console.error(error);
     return res.status(400).json({ error: error.message });

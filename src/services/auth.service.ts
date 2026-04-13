@@ -1,5 +1,6 @@
 import { randomUUID } from "crypto";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const users = [];
 
@@ -37,8 +38,12 @@ export async function signin({ email, password }) {
     throw new Error("Invalid credentials");
   }
 
-  const { password: _, ...userWithoutPassword } = user;
+  const token = jwt.sign(
+    { userId: user.id },
+    "supersecret", // later → env variable
+    { expiresIn: "1d" }
+  );
 
-  return userWithoutPassword;
+  return { token };
 }
 
