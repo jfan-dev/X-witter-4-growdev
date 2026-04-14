@@ -1,4 +1,4 @@
-import { randomUUID } from "crypto";
+import { env } from "../config/env.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { prisma } from "../prisma/client.js";
@@ -48,8 +48,8 @@ export async function signin({ email, password }) {
 
   const token = jwt.sign(
     { userId: user.id },
-    "supersecret", // later → env variable
-    { expiresIn: "1d" }
+    env.jwtSecret,
+    { expiresIn: env.jwtExpiresIn }
   );
 
   return { token };

@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { env } from "../config/env.js";
 
 export function authMiddleware(req, res, next) {
   try {
@@ -10,7 +11,7 @@ export function authMiddleware(req, res, next) {
 
     const [, token] = authHeader.split(" ");
 
-    const decoded = jwt.verify(token, "supersecret");
+    const decoded = jwt.verify(token, env.jwtSecret);
 
     req.userId = decoded.userId;
 
