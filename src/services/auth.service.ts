@@ -32,10 +32,17 @@ export async function signup({ name, email, password, birthdate }) {
 }
 
 export async function signin({ email, password }) {
-  const user = users.find(u => u.email === email);
+  const user = await prisma.user.findUnique({
+    where: { email },
+  });
+  
+  if (!user) {
+    throw new Error("Invalid credentials");
+  }
+  
   const isValid = await bcrypt.compare(password, user.password);
 
-  if (!user || !isValid) {
+  if (!isValid) {
     throw new Error("Invalid credentials");
   }
 
