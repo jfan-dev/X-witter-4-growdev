@@ -24,6 +24,8 @@ model User {
 
   following    Follow[] @relation("following")
   followers    Follow[] @relation("followers")
+
+  likes        Like[]
 }
 
 model Xweet {
@@ -37,6 +39,8 @@ model Xweet {
   parentId  String?
   parent    Xweet?   @relation("XweetReplies", fields: [parentId], references: [id])
   replies   Xweet[]  @relation("XweetReplies")
+
+  likes     Like[]
 }
 
 model Follow {
@@ -49,4 +53,16 @@ model Follow {
   following   User @relation("followers", fields: [followingId], references: [id])
 
   @@unique([followerId, followingId])
+}
+
+model Like {
+  id      String @id @default(uuid())
+
+  userId  String
+  xweetId String
+
+  user    User   @relation(fields: [userId], references: [id])
+  xweet   Xweet  @relation(fields: [xweetId], references: [id])
+
+  @@unique([userId, xweetId])
 }
