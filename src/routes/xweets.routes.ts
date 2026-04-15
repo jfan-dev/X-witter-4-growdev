@@ -1,15 +1,13 @@
 import { Router } from "express";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
+import { create, reply } from "../controllers/xweet.controller.js";
 
 const router = Router();
 
-router.post("/", authMiddleware, (req, res) => {
-    return res.json({ message: "xweets route working"})
-})
 
-router.post("/:id/reply", authMiddleware, (req, res) => {
-    return res.json({ message: "xweets reply route working"})
-})
+router.post("/", authMiddleware, create);
+
+router.post("/:id/reply", authMiddleware, reply);
 
 router.post("/:id/like", authMiddleware, (req, res) => {
     return res.json({ message: "xweets like route working"})

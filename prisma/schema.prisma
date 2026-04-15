@@ -20,13 +20,13 @@ model User {
   profileImage String
   createdAt    DateTime @default(now())
 
-  tweets       Tweet[]
+  xweets       Xweet[]
 
   following    Follow[] @relation("following")
   followers    Follow[] @relation("followers")
 }
 
-model Tweet {
+model Xweet {
   id        String   @id @default(uuid())
   content   String
   createdAt DateTime @default(now())
@@ -35,8 +35,8 @@ model Tweet {
   author    User     @relation(fields: [authorId], references: [id])
 
   parentId  String?
-  parent    Tweet?   @relation("TweetReplies", fields: [parentId], references: [id])
-  replies   Tweet[]  @relation("TweetReplies")
+  parent    Xweet?   @relation("XweetReplies", fields: [parentId], references: [id])
+  replies   Xweet[]  @relation("XweetReplies")
 }
 
 model Follow {
