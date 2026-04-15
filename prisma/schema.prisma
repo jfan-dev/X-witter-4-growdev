@@ -19,4 +19,34 @@ model User {
   birthdate    DateTime @db.Date
   profileImage String
   createdAt    DateTime @default(now())
+
+  tweets       Tweet[]
+
+  following    Follow[] @relation("following")
+  followers    Follow[] @relation("followers")
+}
+
+model Tweet {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now())
+
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+
+  parentId  String?
+  parent    Tweet?   @relation("TweetReplies", fields: [parentId], references: [id])
+  replies   Tweet[]  @relation("TweetReplies")
+}
+
+model Follow {
+  id          String @id @default(uuid())
+
+  followerId  String
+  followingId String
+
+  follower    User @relation("following", fields: [followerId], references: [id])
+  following   User @relation("followers", fields: [followingId], references: [id])
+
+  @@unique([followerId, followingId])
 }
