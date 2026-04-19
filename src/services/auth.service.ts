@@ -1,6 +1,6 @@
-import { env } from "../config/env.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { env } from "../config/env.js";
 import { prisma } from "../prisma/client.js";
 
 const generateDefaultAvatar = (name) => `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}`;
