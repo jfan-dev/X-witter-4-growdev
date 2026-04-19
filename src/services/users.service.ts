@@ -5,7 +5,7 @@ export async function getUserProfile(userId: string) {
   const user = await prisma.user.findUnique({
     where: { id: userId },
     include: {
-      tweets: true,
+      xweets: true,
       followers: {
         include: {
           follower: true,

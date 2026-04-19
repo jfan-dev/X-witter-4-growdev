@@ -6,10 +6,10 @@ export function mapUserProfile(user) {
     profileImage: user.profileImage,
     createdAt: user.createdAt,
 
-    tweets: user.tweets.map(tweet => ({
-      id: tweet.id,
-      content: tweet.content,
-      createdAt: tweet.createdAt,
+    xweets: user.xweets.map(xweet => ({
+      id: xweet.id,
+      content: xweet.content,
+      createdAt: xweet.createdAt,
     })),
 
     followers: user.followers.map(f => ({

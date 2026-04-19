@@ -15,7 +15,7 @@ export async function getFeed(userId: string) {
 
   const authors = [userId, ...followingIds];
 
-  const tweets = await prisma.tweet.findMany({
+  const xweets = await prisma.xweet.findMany({
     where: {
       authorId: {
         in: authors,
@@ -35,5 +35,5 @@ export async function getFeed(userId: string) {
     },
   });
 
-  return tweets;
+  return xweets;
 }
