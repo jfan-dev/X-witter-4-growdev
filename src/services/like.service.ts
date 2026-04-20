@@ -1,4 +1,5 @@
 import { prisma } from "../prisma/client.js";
+import { AppError } from "../errors/app-error.js";
 
 export async function likeXweet(userId: string, xweetId: string) {
 
@@ -7,7 +8,7 @@ export async function likeXweet(userId: string, xweetId: string) {
   });
 
   if (!xweet) {
-    throw new Error("Xweet not found");
+    throw new AppError("Xweet not found", 404);
   }
 
   const existingLike = await prisma.like.findUnique({
@@ -20,7 +21,7 @@ export async function likeXweet(userId: string, xweetId: string) {
   });
 
   if (existingLike) {
-    throw new Error("You already liked this xweet");
+    throw new AppError("You already liked this xweet", 409);
   }
 
   await prisma.like.create({
@@ -44,7 +45,7 @@ export async function unlikeXweet(userId: string, xweetId: string) {
   });
 
   if (!existingLike) {
-    throw new Error("You have not liked this xweet");
+    throw new AppError("You have not liked this xweet", 409);
   }
 
   await prisma.like.delete({

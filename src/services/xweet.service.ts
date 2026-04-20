@@ -1,11 +1,12 @@
 import { prisma } from "../prisma/client.js";
+import { AppError } from "../errors/app-error.js";
 
 export async function createXweet(
   userId: string, 
   content: string
 ) {
   if (!content || content.trim().length === 0) {
-    throw new Error("Xweet content cannot be empty");
+    throw new AppError("Xweet content cannot be empty", 400);
   }
 
   const xweet = await prisma.xweet.create({
@@ -24,7 +25,7 @@ export async function replyToXweet(
   content: string
 ) {
   if (!content || content.trim().length === 0) {
-    throw new Error("Reply content cannot be empty");
+    throw new AppError("Reply content cannot be empty", 400);
   }
 
   const parent = await prisma.xweet.findUnique({
@@ -32,7 +33,7 @@ export async function replyToXweet(
   });
 
   if (!parent) {
-    throw new Error("Xweet to reply not found");
+    throw new AppError("Xweet to reply not found", 404);
   }
 
   const reply = await prisma.xweet.create({

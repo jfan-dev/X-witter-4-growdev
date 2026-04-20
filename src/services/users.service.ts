@@ -1,5 +1,6 @@
 import { prisma } from "../prisma/client.js";
 import { mapUserProfile } from "../dtos/user.dto.js";
+import { AppError } from "../errors/app-error.js";
 
 export async function getUserProfile(userId: string) {
   const user = await prisma.user.findUnique({
@@ -20,7 +21,7 @@ export async function getUserProfile(userId: string) {
   });
 
   if (!user) {
-    throw new Error("User not found");
+    throw new AppError("User not found", 404);
   }
 
   return mapUserProfile(user);

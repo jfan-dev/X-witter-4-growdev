@@ -1,9 +1,10 @@
 import { prisma } from "../prisma/client.js";
+import { AppError } from "../errors/app-error.js";
 
 export async function followUser(currentUserId: string, targetUserId: string) {
 
   if (currentUserId === targetUserId) {
-    throw new Error("You cannot follow yourself");
+    throw new AppError("You cannot follow yourself", 409);
   }
 
   const targetUser = await prisma.user.findUnique({
@@ -11,7 +12,7 @@ export async function followUser(currentUserId: string, targetUserId: string) {
   });
 
   if (!targetUser) {
-    throw new Error("User to follow not found");
+    throw new AppError("User to follow not found", 404);
   }
 
   const existingFollow = await prisma.follow.findUnique({
@@ -24,7 +25,7 @@ export async function followUser(currentUserId: string, targetUserId: string) {
   });
 
   if (existingFollow) {
-    throw new Error("Already following this user");
+    throw new AppError("Already following this user", 409);
   }
 
   await prisma.follow.create({
@@ -48,7 +49,7 @@ export async function unfollowUser(currentUserId: string, targetUserId: string) 
   });
 
   if (!existingFollow) {
-    throw new Error("You are not following this user");
+    throw new AppError("You are not following this user", 409);
   }
 
   await prisma.follow.delete({

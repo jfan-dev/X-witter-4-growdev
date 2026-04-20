@@ -1,19 +1,28 @@
+import type { NextFunction, Request, Response } from "express";
 import { likeXweet, unlikeXweet } from "../services/like.service.js";
 
-export async function like(req, res) {
+export async function like(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const result = await likeXweet(req.userId, req.params.id);
     return res.status(200).json(result);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    return next(error);
   }
 }
 
-export async function unlike(req, res) {
+export async function unlike(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const result = await unlikeXweet(req.userId, req.params.id);
     return res.status(200).json(result);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    return next(error);
   }
 }
