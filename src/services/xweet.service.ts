@@ -1,6 +1,9 @@
 import { prisma } from "../prisma/client.js";
 
-export async function createXweet(userId: string, content: string) {
+export async function createXweet(
+  userId: string, 
+  content: string
+) {
   if (!content || content.trim().length === 0) {
     throw new Error("Xweet content cannot be empty");
   }
