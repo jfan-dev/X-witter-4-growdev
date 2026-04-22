@@ -10,11 +10,16 @@ export async function follow(
     if (!req.userId) {
       return res.status(401).json({ error: "Unauthorized" });
     }
-    if (!req.params.id) {
-      return res.status(401).json({ error: "Unauthorized" });
+
+    const targetUserId = Array.isArray(req.params.id)
+      ? req.params.id[0]
+      : req.params.id;
+
+    if (!targetUserId) {
+      return res.status(400).json({ error: "User id is required" });
     }
-    
-    const result = await followUser(req.userId, req.params.id);
+
+    const result = await followUser(req.userId, targetUserId);
     return res.status(200).json(result);
   } catch (error) {
     return next(error);
@@ -27,7 +32,19 @@ export async function unfollow(
   next: NextFunction
 ) {
   try {
-    const result = await unfollowUser(req.userId, req.params.id);
+    if (!req.userId) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    const targetUserId = Array.isArray(req.params.id)
+      ? req.params.id[0]
+      : req.params.id;
+
+    if (!targetUserId) {
+      return res.status(400).json({ error: "User id is required" });
+    }
+
+    const result = await unfollowUser(req.userId, targetUserId);
     return res.status(200).json(result);
   } catch (error) {
     return next(error);

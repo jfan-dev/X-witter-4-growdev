@@ -7,8 +7,15 @@ export async function getUser(
   next: NextFunction
 ) {
   try {
-    const user = await getUserProfile(req.params.id);
+    const userId = Array.isArray(req.params.id)
+      ? req.params.id[0]
+      : req.params.id;
 
+    if (!userId) {
+      return res.status(400).json({ error: "User id is required" });
+    }
+
+    const user = await getUserProfile(userId);
     return res.json(user);
   } catch (error) {
     return next(error);
