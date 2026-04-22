@@ -1,7 +1,16 @@
 import jwt from "jsonwebtoken";
 import { env } from "../config/env.js";
+import type { Request, Response, NextFunction } from "express";
 
-export function authMiddleware(req, res, next) {
+export interface AuthRequest extends Request {
+  userId?: string;
+}
+
+export function authMiddleware(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
     const authHeader = req.headers.authorization;
 
