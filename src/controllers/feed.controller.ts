@@ -7,6 +7,10 @@ export async function feed(
   next: NextFunction
 ) {
   try {
+    if (!req.userId) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
     const tweets = await getFeed(req.userId);
     return res.status(200).json(tweets);
   } catch (error) {
