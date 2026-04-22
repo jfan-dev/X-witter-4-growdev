@@ -5,6 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "prisma:generate": "prisma generate",
+    "migrate:deploy": "prisma migrate deploy",
+    "postinstall": "prisma generate",
     "test": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test -- jest --runInBand",
     "test:db": "dotenv -e .env.test -- prisma migrate deploy",
     "test:reset": "dotenv -e .env.test -- prisma db push --force-reset"
