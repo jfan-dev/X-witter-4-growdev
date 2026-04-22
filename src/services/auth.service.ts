@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import jwt, { type SignOptions } from "jsonwebtoken";
 import { env } from "../config/env.js";
 import { prisma } from "../prisma/client.js";
 import { AppError } from "../errors/app-error.js";
@@ -60,7 +60,13 @@ export async function signin({ email, password }: SigninInput) {
     throw new AppError("Invalid credentials", 401);
   }
 
-  const token = jwt.sign({ userId: user.id }, env.jwtSecret, { expiresIn: env.jwtExpiresIn });
+  const expiresIn = env.jwtExpiresIn as NonNullable<SignOptions["expiresIn"]>;
+
+  const token = jwt.sign(
+    { userId: user.id },
+    env.jwtSecret,
+    { expiresIn }
+  );
 
   return { token };
 }
