@@ -563,7 +563,7 @@ Relacionamentos principais:
 
 ## Deploy
 
-Esta API foi pensada para ser publicada no **Render**.
+Esta API foi pensada para ser publicada no **Vercel**.
 
 ### Checklist de produção
 
@@ -578,7 +578,7 @@ Esta API foi pensada para ser publicada no **Render**.
 URL de produção:
 
 ```bash
-<sua-url-no-render>
+https://x-witter-4-growdev.vercel.app/
 ```
 
 ---
@@ -631,7 +631,7 @@ Possíveis próximos passos após o MVP:
 GitHub:
 
 ```bash
-<url-do-seu-repositorio-publico>
+https://github.com/jfan-dev/X-witter-4-growdev
 ```
 
 ---

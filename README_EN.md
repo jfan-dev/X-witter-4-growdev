@@ -578,7 +578,7 @@ This API is intended to be deployed on **Vercel**.
 Production URL:
 
 ```bash
-<your-vercel-url>
+https://x-witter-4-growdev.vercel.app/
 ```
 
 ---
