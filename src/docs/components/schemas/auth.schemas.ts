@@ -37,7 +37,7 @@ export const authSchemas = {
       password: {
         type: "string",
         format: "password",
-        example: "123456",
+        example: "Test@123",
       },
     },
   },
