@@ -10,7 +10,10 @@ A aplicação foi construída com foco em uma arquitetura monolítica simples, o
 
 O objetivo principal do projeto é demonstrar a construção de uma API backend funcional, com autenticação, persistência de dados, regras de negócio e deploy em ambiente público.
 
-![API Backend](https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop)
+![API Backend]
+<p align="center">
+  <img src="./docs/assets/x-uitter-banner.png" alt="X-uitter banner" width="800" />
+</p>
 
 ## 🌐 Pré-requisitos para rodar o projeto
 

@@ -10,7 +10,10 @@ The application was built with a simple monolithic architecture, organized into 
 
 The main goal of the project is to demonstrate the development of a functional backend API with authentication, data persistence, business rules, and deployment in a public environment.
 
-![API Backend](https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop)
+![API Backend]
+<p align="center">
+  <img src="./docs/assets/x-uitter-banner.png" alt="X-uitter banner" width="800" />
+</p>
 
 ## 🌐 Prerequisites to run the project
 
