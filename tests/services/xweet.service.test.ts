@@ -8,10 +8,11 @@ describe("createXweet", () => {
   beforeEach(async () => {
 
     await prisma.$transaction([
-      prisma.like.deleteMany(),
-      prisma.follow.deleteMany(),
-      prisma.xweet.deleteMany(),
-      prisma.user.deleteMany(),
+      await prisma.session.deleteMany();
+      await prisma.like.deleteMany();
+      await prisma.follow.deleteMany();
+      await prisma.xweet.deleteMany();
+      await prisma.user.deleteMany();
     ]);
 
     const user = await prisma.user.create({

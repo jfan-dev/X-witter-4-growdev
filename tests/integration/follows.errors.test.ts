@@ -12,6 +12,7 @@ type TestUserInput = {
 };
 
 async function clearDatabase() {
+  await prisma.session.deleteMany();
   await prisma.like.deleteMany();
   await prisma.follow.deleteMany();
   await prisma.xweet.deleteMany();

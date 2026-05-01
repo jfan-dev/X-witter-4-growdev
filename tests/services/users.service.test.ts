@@ -6,13 +6,14 @@ describe("users.service", () => {
   let userB: any;
 
   beforeEach(async () => {
-    // ✅ clean DB
+
+    await prisma.session.deleteMany();
     await prisma.like.deleteMany();
     await prisma.follow.deleteMany();
     await prisma.xweet.deleteMany();
     await prisma.user.deleteMany();
 
-    // create users
+
     userA = await prisma.user.create({
       data: {
         name: "User A",
@@ -67,7 +68,7 @@ describe("users.service", () => {
   });
 
   it("should include followers", async () => {
-    // B follows A
+
     await prisma.follow.create({
       data: {
         followerId: userB.id,
@@ -82,7 +83,7 @@ describe("users.service", () => {
   });
 
   it("should include following users", async () => {
-    // A follows B
+
     await prisma.follow.create({
       data: {
         followerId: userA.id,

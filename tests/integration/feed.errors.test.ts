@@ -4,6 +4,7 @@ import app from "../../src/app.js";
 import { prisma } from "../../src/prisma/client.js";
 
 async function clearDatabase() {
+  await prisma.session.deleteMany();
   await prisma.like.deleteMany();
   await prisma.follow.deleteMany();
   await prisma.xweet.deleteMany();

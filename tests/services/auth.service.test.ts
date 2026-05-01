@@ -6,6 +6,7 @@ import { signup, signin } from "../../src/services/auth.service.js";
 describe("auth.service", () => {
     
   beforeEach(async () => {
+    await prisma.session.deleteMany();
     await prisma.like.deleteMany();
     await prisma.follow.deleteMany();
     await prisma.xweet.deleteMany();
