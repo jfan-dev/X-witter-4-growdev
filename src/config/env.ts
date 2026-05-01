@@ -1,7 +1,4 @@
 import "dotenv/config";
-import type { SignOptions } from "jsonwebtoken";
-
-type JwtExpiresIn = NonNullable<SignOptions["expiresIn"]>;
 
 function requireEnv(value: string | undefined, name: string): string {
   if (!value) {
@@ -11,9 +8,19 @@ function requireEnv(value: string | undefined, name: string): string {
   return value;
 }
 
-const jwtExpiresIn = (process.env.JWT_EXPIRES_IN ?? "1d") as JwtExpiresIn;
+function optionalEnv(value: string | undefined): string | undefined {
+  if (!value || value.trim() === "") {
+    return undefined;
+  }
+
+  return value;
+}
 
 export const env = {
   jwtSecret: requireEnv(process.env.JWT_SECRET, "JWT_SECRET"),
-  jwtExpiresIn,
+  jwtExpiresIn: process.env.JWT_EXPIRES_IN || "1d",
+
+  swaggerServerUrl: optionalEnv(process.env.SWAGGER_SERVER_URL),
+
+  renderExternalUrl: optionalEnv(process.env.RENDER_EXTERNAL_URL),
 };

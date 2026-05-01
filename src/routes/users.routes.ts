@@ -7,9 +7,7 @@ import { validateUserIdParam } from "../middlewares/validation/user.validation.j
 const router = Router();
 
 router.get("/:id", authMiddleware, validateUserIdParam, getUser);
-
 router.post("/:id/follow", authMiddleware, validateUserIdParam, follow);
-
 router.delete("/:id/follow", authMiddleware, validateUserIdParam, unfollow);
 
-export default router
+export default router;

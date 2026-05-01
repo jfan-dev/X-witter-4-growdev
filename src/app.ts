@@ -1,12 +1,23 @@
 import express from 'express'
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./docs/swagger.js";
+
 import authRoutes from "./routes/auth.routes.js";
 import xweetsRoutes from "./routes/xweets.routes.js";
 import feedRoutes from "./routes/feed.routes.js";
 import usersRoutes from "./routes/users.routes.js";
+
 import { errorHandler } from "./middlewares/error-handler.middleware.js";
 
 const app = express();
 app.use(express.json());
+
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+app.get("/docs.json", (_req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.send(swaggerSpec);
+});
 
 app.use("/auth", authRoutes);
 app.use("/xweets", xweetsRoutes);
