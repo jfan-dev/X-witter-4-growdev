@@ -246,7 +246,7 @@ http://localhost:3002/docs
 Ambiente de produção/deploy:
 
 ```bash
-https://SEU-LINK-DE-DEPLOY/docs
+https://https://x-witter-4-growdev-9jsfwcxis-jfan-test.vercel.app/docs
 ```
 
 > Substitua `https://SEU-LINK-DE-DEPLOY` pela URL real da API publicada, por exemplo a URL gerada pela Vercel ou Render.
@@ -401,7 +401,7 @@ A API deve ser publicada em uma plataforma como Render ou Vercel.
 | Recurso | Link |
 |---|---|
 | Repositório | [GitHub](https://github.com/jfan-dev/X-witter-4-growdev) |
-| Deploy | <--TODO--> |
+| Deployment | [Vercel](https://x-witter-4-growdev-9jsfwcxis-jfan-test.vercel.app) |
 
 ## ✅ Status do MVP
 
