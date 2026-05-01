@@ -1,3 +1,4 @@
+[🇺🇸 English Version](./README.md)
 # X-uitter API
 
 ## 🌐 Descrição
@@ -88,6 +89,101 @@ Resposta esperada:
 }
 ```
 
+### Executando com Docker
+
+> Use esta opção caso queira subir a API e o banco PostgreSQL em containers, sem depender de uma instalação local do PostgreSQL.
+
+#### Pré-requisitos para Docker
+
+- Docker instalado
+- Docker Compose instalado
+- Arquivo `.env` configurado na raiz do projeto
+
+Exemplo de `.env` para uso com Docker Compose:
+
+```env
+DATABASE_URL="postgresql://postgres:postgres@db:5432/xuitter?schema=public"
+JWT_SECRET="sua_chave_secreta"
+JWT_EXPIRES_IN="1d"
+PORT=3002
+POSTGRES_USER="postgres"
+POSTGRES_PASSWORD="postgres"
+POSTGRES_DB="xuitter"
+```
+
+> No Docker Compose, o host do banco normalmente deve ser o nome do serviço do PostgreSQL, por exemplo `db`, e não `localhost`.
+
+#### Subindo a aplicação
+
+```bash
+# Construir as imagens e iniciar os containers
+> docker compose up --build
+```
+
+A API ficará disponível em:
+
+```bash
+http://localhost:3002
+```
+
+Para rodar em segundo plano:
+
+```bash
+> docker compose up --build -d
+```
+
+#### Executando migrations dentro do container
+
+Depois que o banco estiver rodando, execute as migrations do Prisma:
+
+```bash
+> docker compose exec api npx prisma migrate dev
+```
+
+Caso o serviço da API tenha outro nome no `docker-compose.yml`, substitua `api` pelo nome correto do serviço.
+
+Também é possível gerar novamente o Prisma Client dentro do container:
+
+```bash
+> docker compose exec api npx prisma generate
+```
+
+#### Verificando se a API está funcionando
+
+```bash
+> curl http://localhost:3002/health
+```
+
+Resposta esperada:
+
+```json
+{
+  "status": "ok"
+}
+```
+
+#### Comandos úteis com Docker
+
+```bash
+# Ver logs dos containers
+> docker compose logs -f
+
+# Ver logs apenas da API
+> docker compose logs -f api
+
+# Parar os containers
+> docker compose down
+
+# Parar os containers e remover volumes do banco
+> docker compose down -v
+
+# Acessar o shell do container da API
+> docker compose exec api sh
+```
+
+> Use `docker compose down -v` com cuidado, pois esse comando remove o volume do PostgreSQL e apaga os dados locais do banco usado pelos containers.
+
+
 ### Executando os testes
 
 ```bash
@@ -98,24 +194,6 @@ Caso o projeto esteja usando Jest com TypeScript em ESM, o comando pode precisar
 
 ```bash
 > NODE_OPTIONS="--experimental-vm-modules" npx jest --runInBand
-```
-
-## 👑 Demonstração
-
-A API permite executar o fluxo principal de uma rede social estilo Twitter/X:
-
-```mermaid
-flowchart TD
-    A[Usuário cria conta] --> B[Usuário faz login]
-    B --> C[Recebe token JWT]
-    C --> D[Cria xweets]
-    C --> E[Segue usuários]
-    C --> F[Curtir xweets]
-    C --> G[Responder xweets]
-    D --> H[Feed personalizado]
-    E --> H
-    F --> H
-    G --> H
 ```
 
 #### ✍🏻️ Features adicionais
@@ -141,7 +219,7 @@ flowchart TD
 | bcrypt | Criptografia/hash de senhas | [Link](https://www.npmjs.com/package/bcrypt) |
 | Jest | Testes automatizados | [Link](https://jestjs.io/) |
 | Supertest | Testes de integração de endpoints HTTP | [Link](https://www.npmjs.com/package/supertest) |
-| Render | Deploy da API | [Link](https://render.com/) |
+| Vercel | Deploy da API | [Link](https://vercel.com/) |
 | GitHub | Versionamento e hospedagem do repositório público | [Link](https://github.com/) |
 
 ## 📌 Principais Entidades
@@ -280,7 +358,7 @@ A API deve ser publicada em uma plataforma como Render ou Vercel.
 | Recurso | Link |
 |---|---|
 | Repositório | [GitHub](https://github.com/jfan-dev/X-witter-4-growdev) |
-| Deploy | Adicione aqui o link do Render/Vercel |
+| Deploy | <--TODO--> |
 
 ## ✅ Status do MVP
 
@@ -296,7 +374,7 @@ A API deve ser publicada em uma plataforma como Render ou Vercel.
 | Seguir usuário | ✅ Implementado |
 | Deixar de seguir usuário | ✅ Implementado |
 | Feed personalizado | ✅ Implementado |
-| Deploy | 🚧 Pendente/Em andamento |
+| Deploy | ✅ Implementado |
 
 ## 🐼 Desenvolvido por
 
