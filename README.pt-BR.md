@@ -1,5 +1,6 @@
-[🇺🇸 English Version](./README.md)
 # X-uitter API
+
+[🇺🇸 English Version](./README.md)
 
 ## 🌐 Descrição
 
@@ -231,6 +232,48 @@ Caso o projeto esteja usando Jest com TypeScript em ESM, o comando pode precisar
 | Like | Representa a curtida de um usuário em um xweet. |
 | Follow | Representa a relação entre um usuário seguidor e um usuário seguido. |
 | Session | Representa sessões válidas de autenticação, caso o projeto esteja usando controle de sessões no banco. |
+
+## 📘 Documentação da API com Swagger
+
+Após iniciar o servidor, acesse a documentação interativa da API pelo Swagger.
+
+Ambiente local:
+
+```bash
+http://localhost:3002/docs
+```
+
+Ambiente de produção/deploy:
+
+```bash
+https://SEU-LINK-DE-DEPLOY/docs
+```
+
+> Substitua `https://SEU-LINK-DE-DEPLOY` pela URL real da API publicada, por exemplo a URL gerada pela Vercel ou Render.
+
+Com o Swagger, você pode:
+
+- Visualizar todas as rotas disponíveis da API
+- Conferir exemplos de corpo das requisições
+- Testar endpoints diretamente pelo navegador
+- Informar o token JWT para acessar rotas protegidas
+
+### Autenticando no Swagger
+
+1. Acesse a documentação local ou a documentação publicada no deploy
+2. Crie um usuário em `POST /auth/signup`, caso ainda não tenha um usuário cadastrado
+3. Faça login em `POST /auth/signin`
+4. Copie o token JWT retornado pela API
+5. Clique no botão **Authorize** no Swagger
+6. Informe o token no seguinte formato:
+
+```bash
+Bearer SEU_TOKEN_AQUI
+```
+
+Depois disso, as rotas protegidas, como `/xweets`, `/feed`, `/users/:id/follow` e `/xweets/:id/like`, poderão ser testadas diretamente pelo Swagger no ambiente local ou no deploy.
+
+> Caso o endpoint de documentação esteja diferente no projeto, atualize `/docs` conforme a configuração usada no Express.
 
 ## 🔗 Rotas da API
 
