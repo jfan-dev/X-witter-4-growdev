@@ -49,23 +49,36 @@ export async function signin({ email, password }: SigninInput) {
   const user = await prisma.user.findUnique({
     where: { email },
   });
-  
+
   if (!user) {
     throw new AppError("Invalid credentials", 401);
   }
-  
+
   const isValid = await bcrypt.compare(password, user.password);
 
   if (!isValid) {
     throw new AppError("Invalid credentials", 401);
   }
 
-  const expiresIn = env.jwtExpiresIn as NonNullable<SignOptions["expiresIn"]>;
+  const expiresAt = new Date();
+  expiresAt.setDate(expiresAt.getDate() + 1);
+
+  const session = await prisma.session.create({
+    data: {
+      userId: user.id,
+      expiresAt,
+    },
+  });
 
   const token = jwt.sign(
-    { userId: user.id },
+    {
+      userId: user.id,
+      sessionId: session.id,
+    },
     env.jwtSecret,
-    { expiresIn }
+    {
+      expiresIn: env.jwtExpiresIn,
+    }
   );
 
   return { token };
