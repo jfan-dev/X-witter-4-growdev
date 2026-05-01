@@ -21,6 +21,5 @@ export const env = {
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || "1d",
 
   swaggerServerUrl: optionalEnv(process.env.SWAGGER_SERVER_URL),
-
-  renderExternalUrl: optionalEnv(process.env.RENDER_EXTERNAL_URL),
+  vercelUrl: optionalEnv(process.env.VERCEL_URL),
 };

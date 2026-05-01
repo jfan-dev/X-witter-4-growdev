@@ -5,14 +5,27 @@ const localServer = {
   description: "Local server",
 };
 
-const productionUrl = env.swaggerServerUrl || env.renderExternalUrl;
+const deployedUrl =
+  env.swaggerServerUrl ||
+  (env.vercelUrl ? `https://${env.vercelUrl}` : undefined);
 
-export const servers = productionUrl
-  ? [
-      localServer,
-      {
-        url: productionUrl,
-        description: "Production server",
-      },
-    ]
-  : [localServer];
+const isProduction =
+  process.env.NODE_ENV === "production" || Boolean(process.env.VERCEL);
+
+export const servers =
+  isProduction && deployedUrl
+    ? [
+        {
+          url: deployedUrl,
+          description: "Production server",
+        },
+      ]
+    : deployedUrl
+      ? [
+          {
+            url: deployedUrl,
+            description: "Production server",
+          },
+          localServer,
+        ]
+      : [localServer];
