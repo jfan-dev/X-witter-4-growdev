@@ -70,15 +70,19 @@ export async function signin({ email, password }: SigninInput) {
     },
   });
 
+const jwtExpiresIn = env.jwtExpiresIn as NonNullable<SignOptions["expiresIn"]>;
+
+const signOptions: SignOptions = {
+  expiresIn: jwtExpiresIn,
+};
+
   const token = jwt.sign(
     {
       userId: user.id,
       sessionId: session.id,
     },
     env.jwtSecret,
-    {
-      expiresIn: env.jwtExpiresIn,
-    }
+    signOptions
   );
 
   return { token };
