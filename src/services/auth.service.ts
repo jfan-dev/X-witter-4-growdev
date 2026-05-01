@@ -70,6 +70,7 @@ export async function signin({ email, password }: SigninInput) {
     },
   });
 
+// fix signOptions
 const jwtExpiresIn = env.jwtExpiresIn as NonNullable<SignOptions["expiresIn"]>;
 
 const signOptions: SignOptions = {
