@@ -247,7 +247,7 @@ http://localhost:3002/docs
 Production/deployment environment:
 
 ```bash
-https://https://x-witter-4-growdev-9jsfwcxis-jfan-test.vercel.app//docs
+https://x-witter-4-growdev-dp92cezwm-jfan-test.vercel.app/docs
 ```
 
 With Swagger, you can:
@@ -400,7 +400,7 @@ The API should be published on a platform such as Render or Vercel.
 | Resource | Link |
 |---|---|
 | Repository | [GitHub](https://github.com/jfan-dev/X-witter-4-growdev) |
-| Deployment | [Vercel](https://x-witter-4-growdev-9jsfwcxis-jfan-test.vercel.app) |
+| Deployment | [Vercel](https://x-witter-4-growdev-dp92cezwm-jfan-test.vercel.app) |
 
 ## ✅ MVP Status
 
