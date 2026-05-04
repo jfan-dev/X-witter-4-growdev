@@ -15,7 +15,7 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://x-witter-4-growdev.vercel.app/",
+  "https://x-witter-4-growdev-front.vercel.app",
 ];
 
 app.use(
