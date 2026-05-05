@@ -1,7 +1,6 @@
 import { prisma } from "../prisma/client.js";
 
 export async function getFeed(userId: string) {
-
   const following = await prisma.follow.findMany({
     where: {
       followerId: userId,
@@ -11,14 +10,14 @@ export async function getFeed(userId: string) {
     },
   });
 
-  const followingIds = following.map(f => f.followingId);
+  const followingIds = following.map((follow) => follow.followingId);
 
-  const authors = [userId, ...followingIds];
+  const authorIds = [userId, ...followingIds];
 
   const xweets = await prisma.xweet.findMany({
     where: {
       authorId: {
-        in: authors,
+        in: authorIds,
       },
     },
     orderBy: {
@@ -32,8 +31,19 @@ export async function getFeed(userId: string) {
           profileImage: true,
         },
       },
+      likes: {
+        where: {
+          userId,
+        },
+        select: {
+          userId: true,
+        },
+      },
     },
   });
 
-  return xweets;
+  return xweets.map(({ likes, ...xweet }) => ({
+    ...xweet,
+    likedByMe: likes.length > 0,
+  }));
 }

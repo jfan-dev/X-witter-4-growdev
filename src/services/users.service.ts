@@ -2,9 +2,14 @@ import { prisma } from "../prisma/client.js";
 import { mapUserProfile } from "../dtos/user.dto.js";
 import { AppError } from "../errors/app-error.js";
 
-export async function getUserProfile(userId: string) {
+export async function getUserProfile(
+  targetUserId: string,
+  currentUserId: string
+) {
   const user = await prisma.user.findUnique({
-    where: { id: userId },
+    where: {
+      id: targetUserId,
+    },
     include: {
       xweets: true,
       followers: {
@@ -24,7 +29,19 @@ export async function getUserProfile(userId: string) {
     throw new AppError("User not found", 404);
   }
 
-  return mapUserProfile(user);
+  const existingFollow = await prisma.follow.findUnique({
+    where: {
+      followerId_followingId: {
+        followerId: currentUserId,
+        followingId: targetUserId,
+      },
+    },
+  });
+
+  return {
+    ...mapUserProfile(user),
+    isFollowing: Boolean(existingFollow),
+  };
 }
 
 export async function searchUsers(query: string) {
