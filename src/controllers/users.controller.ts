@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import { getUserProfile } from "../services/users.service.js";
+import { getUserProfile, searchUsers } from "../services/users.service.js";
 
 export async function getUser(
   req: Request,
@@ -17,6 +17,22 @@ export async function getUser(
 
     const user = await getUserProfile(userId);
     return res.json(user);
+  } catch (error) {
+    return next(error);
+  }
+}
+
+export async function search(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const query = typeof req.query.query === "string" ? req.query.query : "";
+
+    const users = await searchUsers(query);
+
+    return res.status(200).json(users);
   } catch (error) {
     return next(error);
   }

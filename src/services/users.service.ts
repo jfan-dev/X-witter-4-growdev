@@ -26,3 +26,42 @@ export async function getUserProfile(userId: string) {
 
   return mapUserProfile(user);
 }
+
+export async function searchUsers(query: string) {
+  const normalizedQuery = query.trim();
+
+  if (normalizedQuery.length < 2) {
+    throw new AppError("Search must have at least 2 characters", 400);
+  }
+
+  const users = await prisma.user.findMany({
+    where: {
+      OR: [
+        {
+          name: {
+            contains: normalizedQuery,
+            mode: "insensitive",
+          },
+        },
+        {
+          email: {
+            contains: normalizedQuery,
+            mode: "insensitive",
+          },
+        },
+      ],
+    },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      profileImage: true,
+    },
+    orderBy: {
+      name: "asc",
+    },
+    take: 10,
+  });
+
+  return users;
+}
