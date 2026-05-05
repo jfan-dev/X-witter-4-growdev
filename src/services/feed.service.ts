@@ -19,6 +19,7 @@ export async function getFeed(userId: string) {
       authorId: {
         in: authorIds,
       },
+      parentId: null,
     },
     orderBy: {
       createdAt: "desc",
@@ -39,11 +40,17 @@ export async function getFeed(userId: string) {
           userId: true,
         },
       },
+      _count: {
+        select: {
+          replies: true,
+        },
+      },
     },
   });
 
-  return xweets.map(({ likes, ...xweet }) => ({
+  return xweets.map(({ likes, _count, ...xweet }) => ({
     ...xweet,
     likedByMe: likes.length > 0,
+    repliesCount: _count.replies,
   }));
 }
