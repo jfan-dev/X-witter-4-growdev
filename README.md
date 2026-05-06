@@ -14,6 +14,16 @@ The main goal of the project is to demonstrate the development of a functional b
   <img src="./docs/assets/x-uitter-banner.png" alt="X-uitter banner" width="800" />
 </p>
 
+### Project links
+
+| Resource | Link |
+|---|---|
+| Frontend Repository | [GitHub](https://github.com/jfan-dev/X-witter-4-growdev-front) |
+| Frontend Deployment | [Vercel](https://x-witter-4-growdev-front.vercel.app/) |
+| Backend Repository | [GitHub](https://github.com/jfan-dev/X-witter-4-growdev) |
+| Backend Deployment | [Vercel](https://x-witter-4-growdev.vercel.app/) |
+| Backend Swagger Docs | [Swagger](https://x-witter-4-growdev.vercel.app/docs) |
+
 ## 🌐 Prerequisites to run the project
 
 - Backend: **Node.js + TypeScript + Express.js**

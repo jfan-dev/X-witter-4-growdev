@@ -14,6 +14,16 @@ O objetivo principal do projeto é demonstrar a construção de uma API backend 
   <img src="./docs/assets/x-uitter-banner.png" alt="X-uitter banner" width="800" />
 </p>
 
+### Links do Projeto
+
+| Recurso | Link |
+|---|---|
+| Repositório Frontend | [GitHub](https://github.com/jfan-dev/X-witter-4-growdev-front) |
+| Deploy Frontend | [Vercel](https://x-witter-4-growdev-front.vercel.app/) |
+| Repositório Backend | [GitHub](https://github.com/jfan-dev/X-witter-4-growdev) |
+| Deploy Backend | [Vercel](https://x-witter-4-growdev.vercel.app/) |
+| Documentação Swagger Backend | [Swagger](https://x-witter-4-growdev.vercel.app/docs) |
+
 ## 🌐 Pré-requisitos para rodar o projeto
 
 - Backend: **Node.js + TypeScript + Express.js**
@@ -421,13 +431,6 @@ A API deve ser publicada em uma plataforma como Render ou Vercel.
 - [ ] Configurar comando de start
 - [ ] Validar rota `/health`
 - [ ] Adicionar link do deploy no README
-
-### Links do projeto
-
-| Recurso | Link |
-|---|---|
-| Repositório | [GitHub](https://github.com/jfan-dev/X-witter-4-growdev) |
-| Deployment | [Vercel](https://x-witter-4-growdev.vercel.app/) |
 
 ## ✅ Status do MVP
 
