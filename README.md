@@ -285,6 +285,8 @@ After that, protected routes such as `/xweets`, `/feed`, `/users/:id/follow`, an
 | POST | `/auth/signup` | Registers a new user | No |
 | POST | `/auth/signin` | Logs in and returns a JWT token | No |
 
+<img src="./docs/assets/auth-signup-req.png" alt="Descrição da imagem" width="500"><img src="./docs/assets/auth-signup-res.png" alt="Descrição da imagem" width="500">
+
 ### Users
 
 | Method | Route | Description | Authentication |
@@ -292,6 +294,8 @@ After that, protected routes such as `/xweets`, `/feed`, `/users/:id/follow`, an
 | GET | `/users/:id` | Returns profile, xweets, followers, and following users | Yes |
 | POST | `/users/:id/follow` | Follows a user | Yes |
 | DELETE | `/users/:id/follow` | Unfollows a user | Yes |
+
+<img src="./docs/assets/users-searchby-req.png" alt="Descrição da imagem" width="500"><img src="./docs/assets/users-searchby-res.png" alt="Descrição da imagem" width="500">
 
 ### Xweets
 
@@ -302,11 +306,15 @@ After that, protected routes such as `/xweets`, `/feed`, `/users/:id/follow`, an
 | POST | `/xweets/:id/like` | Likes a xweet | Yes |
 | DELETE | `/xweets/:id/like` | Removes a like from a xweet | Yes |
 
+<img src="./docs/assets/xweet-create-req.png" alt="Descrição da imagem" width="500"><img src="./docs/assets/xweet-create-res.png" alt="Descrição da imagem" width="500">
+
 ### Feed
 
 | Method | Route | Description | Authentication |
 |---|---|---|---|
 | GET | `/feed` | Returns the user's own xweets and xweets from followed users | Yes |
+
+<img src="./docs/assets/feed-get-req.png" alt="Descrição da imagem" width="500"><img src="./docs/assets/feed-get-res.png" alt="Descrição da imagem" width="500">
 
 ## 🧪 Request Examples
 
