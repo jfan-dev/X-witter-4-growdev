@@ -288,7 +288,7 @@ Depois disso, as rotas protegidas, como `/xweets`, `/feed`, `/users/:id/follow` 
 | POST | `/auth/signup` | Cadastra um novo usuário | Não |
 | POST | `/auth/signin` | Realiza login e retorna um token JWT | Não |
 
-<img src="./docs/assets/auth-signup-req.png" alt="Descrição da imagem" width="500"><img src="./docs/assets/auth-signup-res.png" alt="Descrição da imagem" width="500">
+|<img src="./docs/assets/auth-signup-req.png" alt="Descrição da imagem" width="500"> | <img src="./docs/assets/auth-signup-res.png" alt="Descrição da imagem" width="500">|
 
 ### Usuários
 
@@ -298,7 +298,7 @@ Depois disso, as rotas protegidas, como `/xweets`, `/feed`, `/users/:id/follow` 
 | POST | `/users/:id/follow` | Segue um usuário | Sim |
 | DELETE | `/users/:id/follow` | Deixa de seguir um usuário | Sim |
 
-<img src="./docs/assets/users-searchby-req.png" alt="Descrição da imagem" width="500"><img src="./docs/assets/users-searchby-res.png" alt="Descrição da imagem" width="500">
+|<img src="./docs/assets/users-searchby-req.png" alt="Descrição da imagem" width="500"> | <img src="./docs/assets/users-searchby-res.png" alt="Descrição da imagem" width="500">|
 
 ### Xweets
 
@@ -309,7 +309,7 @@ Depois disso, as rotas protegidas, como `/xweets`, `/feed`, `/users/:id/follow` 
 | POST | `/xweets/:id/like` | Curte um xweet | Sim |
 | DELETE | `/xweets/:id/like` | Remove a curtida de um xweet | Sim |
 
-<img src="./docs/assets/xweet-create-req.png" alt="Descrição da imagem" width="500"><img src="./docs/assets/xweet-create-res.png" alt="Descrição da imagem" width="500">
+|<img src="./docs/assets/xweet-create-req.png" alt="Descrição da imagem" width="500"> | <img src="./docs/assets/xweet-create-res.png" alt="Descrição da imagem" width="500">|
 
 ### Feed
 
@@ -317,7 +317,7 @@ Depois disso, as rotas protegidas, como `/xweets`, `/feed`, `/users/:id/follow` 
 |---|---|---|---|
 | GET | `/feed` | Retorna xweets próprios e de usuários seguidos | Sim |
 
-<img src="./docs/assets/feed-get-req.png" alt="Descrição da imagem" width="500"><img src="./docs/assets/feed-get-res.png" alt="Descrição da imagem" width="500">
+|<img src="./docs/assets/feed-get-req.png" alt="Descrição da imagem" width="500"> | <img src="./docs/assets/feed-get-res.png" alt="Descrição da imagem" width="500">|
 
 ## 🧪 Exemplos de Requisições
 
