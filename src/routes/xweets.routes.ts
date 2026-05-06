@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
-import { create, reply } from "../controllers/xweet.controller.js";
+import { create, thread, reply } from "../controllers/xweet.controller.js";
 import { like, unlike } from "../controllers/like.controller.js";
 import {
   validateCreateXweet,
@@ -11,6 +11,8 @@ import {
 const router = Router();
 
 router.post("/", authMiddleware, validateCreateXweet, create);
+
+router.get("/:id/thread", authMiddleware, validateXweetIdParam, thread);
 
 router.post("/:id/reply", authMiddleware, validateXweetIdParam, validateReplyXweet, reply);
 
